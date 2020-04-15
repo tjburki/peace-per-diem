@@ -1,9 +1,14 @@
 .peace {
     padding: 15px;
     background-color: #E5DFCF;
+
+    &~.peace {
+        margin-top: 15px;
+    }
 }
 
 .author {
     padding-top: 15px;
     font-size: .7rem;
+    font-style: italic;
 }

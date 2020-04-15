@@ -16,6 +16,7 @@
 
 .title {
     display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -23,6 +24,22 @@
     font-size: 2.3rem;
 }
 
+.profilelink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+
+    img {
+        margin-right: 5px;
+    }
+}
+
 .smalltext {
     font-size: .8rem;
+}
+
+.nav {
+    font-size: 1rem;
+    cursor: pointer;
 }

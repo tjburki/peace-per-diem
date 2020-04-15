@@ -3,6 +3,10 @@
   src: url("./fonts/Raleway-Light.ttf") format("truetype");
 }
 
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'main',
@@ -15,4 +19,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+  &:hover {
+    color: darken(white, 5%);
+  }
 }

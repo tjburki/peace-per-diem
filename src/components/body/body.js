@@ -1,10 +1,9 @@
 import React from 'react';
-import Peace from '../peace/peace';
 import styles from './body.module.scss';
 
-const Body = () =>
+const Body = ({children}) =>
     <div className={styles.body}>
-        <Peace text='yo yo yo what up' author='joe blow' />
+        {children}
     </div>;
 
 export default Body;
