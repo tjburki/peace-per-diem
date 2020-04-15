@@ -1,0 +1,28 @@
+.header {
+    background-color: #BABC94;
+}
+
+.applayout {
+    max-width: 800px; 
+    margin: auto; 
+    padding: 15px; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: white; 
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    display: flex;
+}
+
+.logo {
+    margin-right: 10px;
+    font-size: 2.3rem;
+}
+
+.smalltext {
+    font-size: .8rem;
+}
