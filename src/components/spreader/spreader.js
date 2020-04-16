@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styles from './spreader.module.scss';
 import Peace from '../peace/peace';
+import { apiUrl } from '../../constants';
 
 export default class Spreader extends React.Component {
     state = {
@@ -18,14 +19,14 @@ export default class Spreader extends React.Component {
 
     createPeace = () => {
         const { newPeace } = this.state;
-        axios.post('http://localhost:3001/peaces', { user_id: this.props.userId, text: newPeace })
+        axios.post(`${apiUrl}/peaces`, { user_id: this.props.userId, text: newPeace })
             .then(response => {
                 this.getPeacesForUser();
             });
     };
 
     getPeacesForUser = () => {
-        axios.get(`http://localhost:3001/user/${this.props.userId}/peaces`)
+        axios.get(`${apiUrl}/user/${this.props.userId}/peaces`)
             .then(response => {
                 debugger;
                 let data = response.data;

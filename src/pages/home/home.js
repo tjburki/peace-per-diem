@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Peace from '../../components/peace/peace';
+import { apiUrl } from '../../constants';
 
 export default class Home extends React.Component {
     state = {
@@ -8,7 +9,7 @@ export default class Home extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:3001/peaces')
+        axios.get(`${apiUrl}/peaces`)
             .then(response => {
                 const peaces = response.data;
                 this.setState({ peaces });

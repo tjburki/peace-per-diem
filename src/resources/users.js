@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { apiUrl } from '../constants';
 
 export const insertUpdateUser = async(email, username) =>
 {
     debugger;
-    const response = await axios.post('http://localhost:3001/users', { email,  username });
+    const response = await axios.post(`${apiUrl}/users`, { email,  username });
     return response.data;
 }
