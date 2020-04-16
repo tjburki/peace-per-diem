@@ -13,12 +13,12 @@ const Header = () => {
                     <i className={`fa fa-dove ${styles.logo}`}></i>
                     <div>
                         <div>peace per diem</div>
-                        <div className={styles.smalltext}>once a day positive meditations</div>
+                        <div className={styles.smalltext}>daily positive meditations</div>
                     </div>
                 </Link>
                 <div className={styles.nav}>
                     {
-                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: `${appUrl}/profile`})}>login / sign up</Link>
+                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: `${appUrl}/profile`})}>login</Link>
                     }
                     {
                         isAuthenticated && <Link className={styles.profilelink} to="/profile"><img src={user.picture} style={{maxHeight: '1rem'}} /> {user.name}</Link>
