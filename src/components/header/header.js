@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './header.module.scss';
 import { useAuth0 } from '../../react-auth0-spa';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { appUrl } from '../../constants';
 
 const Header = () => {
     const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -17,7 +18,7 @@ const Header = () => {
                 </Link>
                 <div className={styles.nav}>
                     {
-                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: 'http://localhost:3000/profile'})}>login / sign up</Link>
+                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: `${appUrl}/profile`})}>login / sign up</Link>
                     }
                     {
                         isAuthenticated && <Link className={styles.profilelink} to="/profile"><img src={user.picture} style={{maxHeight: '1rem'}} /> {user.name}</Link>
