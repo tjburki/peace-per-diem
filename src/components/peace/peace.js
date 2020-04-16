@@ -7,9 +7,11 @@ const Peace = ({text, author, date}) =>
             {text}
         </div>
         {
-            author &&
+            (author || date) &&
             <div className={styles.author}>
-                {author} {new Date(date).toLocaleDateString()}
+                {
+                    `${(author ? `${author} ` : '')}${new Date(date).toLocaleDateString()}`
+                }
             </div>
         }
     </div>;

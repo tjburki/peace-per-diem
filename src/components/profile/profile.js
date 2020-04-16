@@ -1,7 +1,6 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-spa";
 import styles from './profile.module.scss';
-import axios from 'axios';
 import Spreader from "../spreader/spreader";
 
 const Profile = () => {
@@ -21,7 +20,7 @@ const Profile = () => {
             <div>Welcome, <b>{user.name}</b></div>
             <button className='btn btn-outline-dark' onClick={() => logout()}>logout</button>
         </div>
-        <Spreader />
+        <Spreader userId={user.user_id} />
     </div>
   );
 };
