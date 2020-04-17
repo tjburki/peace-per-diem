@@ -14,7 +14,7 @@ const Home = () => {
         }
 
         getData();
-    });
+    }, []);
 
     const { loading, peaces } = data;
 
