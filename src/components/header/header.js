@@ -18,7 +18,7 @@ const Header = () => {
                 </Link>
                 <div className={styles.nav}>
                     {
-                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: `${appUrl}/profile`})}>login</Link>
+                        !isAuthenticated && <Link onClick={() => loginWithRedirect({redirect_uri: `${appUrl}/profile`, connection: 'google-oauth2'})}>login</Link>
                     }
                     {
                         isAuthenticated && <Link className={styles.profilelink} to="/profile"><img src={user.picture} style={{maxHeight: '1rem'}} /> {user.name}</Link>
