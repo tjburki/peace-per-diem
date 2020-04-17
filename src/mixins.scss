@@ -1,0 +1,11 @@
+@mixin bg-primary {
+    color: white; 
+    background-color: #BABC94;
+}
+
+@mixin app-layout {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto; 
+    padding: 15px;
+}

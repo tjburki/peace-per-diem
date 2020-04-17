@@ -1,14 +1,10 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-spa";
 import styles from './profile.module.scss';
-import Spreader from "../spreader/spreader";
+import Spreader from "../../components/spreader/spreader";
 
 const Profile = () => {
-  const { loading, user, logout } = useAuth0();
-
-  if (loading) {
-        return <div>Loading...</div>;
-  }
+  const { user, loading, logout } = useAuth0();
 
   if (!user) {
       window.location = '/';

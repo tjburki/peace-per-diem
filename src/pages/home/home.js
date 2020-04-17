@@ -1,32 +1,24 @@
-import React from 'react';
-import axios from 'axios';
-import Peace from '../../components/peace/peace';
-import { apiUrl } from '../../constants';
+import React, { useEffect, useState } from 'react';
+import PeaceList from '../../components/peace-list/peace-list';
+import { getPeaces } from '../../resources/peaces';
+import Loading from '../../components/loading/loading';
+import { GiganticText } from '../../components/layout/text/text';
 
-export default class Home extends React.Component {
-    state = {
-        peaces: []
-    };
+const Home = () => {
+    const [data, setData] = useState({peaces: [], loading: true});
 
-    componentDidMount() {
-        axios.get(`${apiUrl}/peaces`)
-            .then(response => {
-                const peaces = response.data;
-                this.setState({ peaces });
-            });
-    }
+    useEffect(() => {
+        async function getData() {
+            const peaces = await getPeaces();
+            setData({peaces, loading: false});
+        }
 
-    render() {
-        const { peaces } = this.state;
+        getData();
+    });
 
-        return (
-            <React.Fragment>
-                {
-                    peaces.length
-                        ?   peaces.map(peace => <Peace key={peace.peace_id} text={peace.text} author={peace.username} date={peace.created} />)
-                        :   null
-                }
-            </React.Fragment>
-        );
-    }
-}
+    const { loading, peaces } = data;
+
+    return loading ? <GiganticText><Loading /></GiganticText> : <PeaceList peaces={peaces} />;
+};
+
+export default Home;

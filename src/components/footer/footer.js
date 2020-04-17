@@ -3,7 +3,7 @@ import styles from './footer.module.scss';
 
 const Footer = () => 
     <div className={styles.footer}>
-        <div className={styles.appcontainer}>
+        <div className={styles.applayout}>
             &copy; {new Date().getFullYear()} Tyler Burki
         </div>
     </div>;

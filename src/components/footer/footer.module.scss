@@ -1,11 +1,11 @@
+@import '../../mixins.scss';
+
 .footer {
-    padding: 15px;
-    text-align: center;
-    background-color: #BABC94;
-    color: white;
+    @include bg-primary;
 }
 
-.appcontainer {
-    max-width: 800px;
-    margin: auto;
+.applayout {
+    @include app-layout;
+
+    text-align: center;
 }
