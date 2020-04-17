@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { appUrl } from '../../constants';
 
 const Header = () => {
-    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+    const { isAuthenticated, loginWithRedirect, user } = useAuth0();
     return (
         <div className={styles.header}>
             <div className={styles.applayout}>

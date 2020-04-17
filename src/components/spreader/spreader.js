@@ -66,7 +66,7 @@ export default class Spreader extends React.Component {
                                 <button type="submit" className='btn btn-outline-dark'>Speak Your Peace</button>
                             </form>
                         :   <div className={styles.todayspeace}>
-                                <div>Today's Peace</div>
+                                <div className={styles.todayspeacetitle}>Today's Peace</div>
                                 <Peace text={todaysPeace.text} />
                             </div>
                 }

@@ -17,8 +17,7 @@ const Profile = () => {
   return (
     <div>
         <div className={styles.profileheader}>
-            <div>Welcome, <b>{user.name}</b></div>
-            <button className='btn btn-outline-dark' onClick={() => logout()}>logout</button>
+            <div>Welcome, <b>{user.name}</b> (<a onClick={() => logout()}>logout</a>)</div>
         </div>
         <Spreader userId={user.user_id} />
     </div>
