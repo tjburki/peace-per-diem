@@ -1,0 +1,34 @@
+.todayspeace {
+    padding: 15px 0;
+}
+
+.form {
+    textarea {
+        resize: none;
+        margin-bottom: 15px;
+    }
+}
+
+.todayspeacedisplay {
+    font-size: 1.3rem;
+}
+
+.todayspeacetitle {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .editicon {
+        cursor: pointer;
+        color: lighten(black, 50%);
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+.oldpeaces {
+    border-top: 1px solid #BABC94;
+    padding-top: 15px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Body from './components/body/body';
 import Header from './components/header/header';
 import { useAuth0 } from "./react-auth0-spa";

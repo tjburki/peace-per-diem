@@ -1,10 +1,10 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-spa";
 import styles from './profile.module.scss';
-import Spreader from "../../components/spreader/spreader";
+import UserPeaceList from "../../components/user-peace-list/user-peace-list";
 
 const Profile = () => {
-  const { user, loading, logout } = useAuth0();
+  const { user, logout } = useAuth0();
 
   if (!user) {
       window.location = '/';
@@ -15,7 +15,7 @@ const Profile = () => {
         <div className={styles.profileheader}>
             <div>Welcome, <b>{user.name}</b> (<a onClick={() => logout()}>logout</a>)</div>
         </div>
-        <Spreader userId={user.user_id} />
+        <UserPeaceList />
     </div>
   );
 };

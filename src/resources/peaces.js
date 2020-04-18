@@ -7,5 +7,14 @@ export const getPeaces = async() =>
 export const getPeacesForUser = async(userId) =>
     (await axios.get(`${apiUrl}/user/${userId}/peaces`)).data;
 
-export const createPeace = async(userId, text) =>
-    (await axios.post(`${apiUrl}/peaces`, { user_id: userId, text })).data;
+export const createUpdatePeace = async(peace) => {
+    if (peace.peace_id) {
+        //Update
+        return (await axios.put(`${apiUrl}/peaces/${peace.peace_id}`, peace)).data;
+    }
+    else {
+        //Create
+        return (await axios.post(`${apiUrl}/peaces`, peace)).data;
+    }
+};
+    
