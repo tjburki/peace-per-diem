@@ -62,7 +62,7 @@ export default class Spreader extends React.Component {
                 {
                     !todaysPeace
                         ?   <form className={styles.spreader} onSubmit={e => {e.preventDefault(); createPeace();}}>
-                                <textarea required maxLength='255' value={newPeace} onChange={setPeace} className='form-control' placeholder='Something that has inspired you or given you hope today'></textarea>
+                                <textarea rows='6' required maxLength={255} value={newPeace} onChange={setPeace} className='form-control' placeholder='Something that has inspired you or given you hope today'></textarea>
                                 <button type="submit" className='btn btn-outline-dark'>Speak Your Peace</button>
                             </form>
                         :   <div className={styles.todayspeace}>
