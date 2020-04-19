@@ -104,7 +104,7 @@ const UserPeaceList = () => {
                 oldPeaces.length
                     ?   <div className={styles.oldpeaces}>
                             {
-                                oldPeaces.map(peace => <Peace key={peace.peace_id} userId={peace.userId} text={peace.text} date={peace.created} />)
+                                oldPeaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} date={peace.created} />)
                             }
                         </div>
                     :   null
