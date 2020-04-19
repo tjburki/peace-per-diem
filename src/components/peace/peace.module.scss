@@ -1,14 +1,39 @@
 .peace {
     padding: 15px;
     background-color: #E5DFCF;
+    display: flex;
+    justify-content: space-between;
 
     &~.peace {
         margin-top: 15px;
     }
 }
 
-.author {
-    padding-top: 15px;
-    font-size: .7rem;
-    font-style: italic;
+.content {
+    padding-right: 10px;
+    flex: 1;
+
+    .author {
+        padding-top: 15px;
+        font-size: .7rem;
+        font-style: italic;
+    }
+}
+
+.actions {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1rem;
+    border-left: 1px solid #BABC94;
+
+    i {
+        color: lighten(black, 50%);
+        cursor: pointer;
+
+        &:hover {
+            color: black;
+        }
+    }
 }

@@ -17,4 +17,7 @@ export const createUpdatePeace = async(peace) => {
         return (await axios.post(`${apiUrl}/peaces`, peace)).data;
     }
 };
+
+export const deletePeace = async(peaceId) =>
+    (await axios.delete(`${apiUrl}/peaces/${peaceId}`)).data;
     
