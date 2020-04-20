@@ -7,7 +7,7 @@ import { isToday } from '../../helpers';
 import Loading from '../loading/loading';
 import { GiganticText } from '../layout/text/text';
 
-const UserPeaceList = () => {
+const UserPeaceList = ({onRefresh}) => {
     const { user } = useAuth0();
     const defaultTodaysPeace = { text: '', user_id: user.user_id };
 
@@ -17,6 +17,7 @@ const UserPeaceList = () => {
     const [loading, setLoading] = useState(false);
 
     async function callGetPeacesForUser() {
+        if (onRefresh) onRefresh();
         setLoading(true);
         const userPeaces = await getPeacesForUser(user.user_id);
         const todaysPeaceToSet = userPeaces && userPeaces.length && isToday(new Date(userPeaces[0].created)) 
@@ -47,7 +48,7 @@ const UserPeaceList = () => {
         callCreateUpdatePeace();
     }
 
-    if (loading) return <GiganticText><Loading /></GiganticText>;
+    if (loading) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
 
     return (
         <div>
@@ -81,7 +82,7 @@ const UserPeaceList = () => {
                 oldPeaces.length
                     ?   <div className={styles.oldpeaces}>
                             {
-                                oldPeaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} date={peace.created} loves={peace.loves} userLoves={peace.userloves} />)
+                                oldPeaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} date={peace.created} loves={peace.loves} userLoves={peace.userloves} onDelete={callGetPeacesForUser} />)
                             }
                         </div>
                     :   null
