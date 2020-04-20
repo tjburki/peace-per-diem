@@ -4,7 +4,7 @@ import { useAuth0 } from '../../react-auth0-spa';
 import { deletePeace, lovePeace, unlovePeace, flagPeace } from '../../resources/peaces';
 import Icon from '../icon/icon';
 
-const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1}) => {
+const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1, onDelete}) => {
     const { user } = useAuth0();
     const authorIsUser = userId && user && userId === user.user_id;
     const [loved, setLoved] = useState(userLoves);
@@ -15,6 +15,8 @@ const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1}) =
 
         await deletePeace(id);
         setVisible(false);
+
+        if (onDelete) onDelete();
     }
 
     async function loveThisPeace() {

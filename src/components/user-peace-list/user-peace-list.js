@@ -5,7 +5,6 @@ import { useAuth0 } from '../../react-auth0-spa';
 import { getPeacesForUser, createUpdatePeace } from '../../resources/peaces';
 import { isToday } from '../../helpers';
 import Loading from '../loading/loading';
-import Icon from '../icon/icon';
 import { GiganticText } from '../layout/text/text';
 
 const UserPeaceList = () => {
@@ -16,8 +15,6 @@ const UserPeaceList = () => {
     const [todaysPeace, setTodaysPeace] = useState(defaultTodaysPeace);
     const [oldPeaces, setOldPeaces] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [editing, setEditing] = useState(false);
-    const [initialized, setInitialized] = useState(false);
 
     async function callGetPeacesForUser() {
         setLoading(true);
@@ -27,8 +24,6 @@ const UserPeaceList = () => {
             :   defaultTodaysPeace
         setTodaysPeace(todaysPeaceToSet);
         setOldPeaces(userPeaces);
-        setEditing(!todaysPeaceToSet.text);
-        setInitialized(true);
         setLoading(false);
     }
 
@@ -38,6 +33,7 @@ const UserPeaceList = () => {
 
     async function callCreateUpdatePeace() {
         await createUpdatePeace({ ...todaysPeace, text: todaysPeaceDraft });
+        setTodaysPeaceDraft('');
         callGetPeacesForUser();
     }
 
@@ -51,16 +47,6 @@ const UserPeaceList = () => {
         callCreateUpdatePeace();
     }
 
-    function edit() {
-        setTodaysPeaceDraft(todaysPeace.text);
-        setEditing(true);
-    }
-
-    function cancelEdit() {
-        setTodaysPeaceDraft(''); //Probably unnecessary
-        setEditing(false);
-    }
-
     if (loading) return <GiganticText><Loading /></GiganticText>;
 
     return (
@@ -68,18 +54,9 @@ const UserPeaceList = () => {
             <div className={styles.todayspeace}>   
                 <div className={styles.todayspeacetitle}>
                     <div>Today's Peace</div>
-                    <div className={styles.editcontrol}>
-                        {
-                            editing && todaysPeace.text
-                                ?   <span onClick={cancelEdit} title='cancel'><Icon type='times' /></span>
-                                :   editing || loading || !initialized
-                                    ?   null
-                                    :   <span onClick={edit} title='edit'><Icon type='edit' /></span>
-                        }
-                    </div>
                 </div>   
                 {
-                    editing
+                    !(todaysPeace && todaysPeace.text)
                         ?   <form className={styles.form} onSubmit={submitPeace}>
                                 <textarea 
                                     rows='6' 
@@ -96,7 +73,7 @@ const UserPeaceList = () => {
                                 </button>
                             </form>
                         :   <div className={styles.todayspeacedisplay}>
-                                <Peace text={todaysPeace.text} />
+                                <Peace id={todaysPeace.peace_id} userId={todaysPeace.user_id} text={todaysPeace.text} loves={todaysPeace.loves} userLoves={todaysPeace.userloves} onDelete={callGetPeacesForUser} />
                             </div>
                 }
             </div>

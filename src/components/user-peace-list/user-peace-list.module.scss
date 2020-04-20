@@ -18,14 +18,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    .editcontrol {
-        cursor: pointer;
-        color: lighten(black, 50%);
-        &:hover {
-            color: black;
-        }
-    }
 }
 
 .oldpeaces {
