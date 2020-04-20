@@ -20,4 +20,14 @@ export const createUpdatePeace = async(peace) => {
 
 export const deletePeace = async(peaceId) =>
     (await axios.delete(`${apiUrl}/peaces/${peaceId}`)).data;
+
+export const lovePeace = async(peaceId, userId) =>
+    (await axios.post(`${apiUrl}/loves/${peaceId}`, {user_id: userId})).data;
+
+//TODO: delete by loveid
+export const unlovePeace = async(peaceId, userId) =>
+    (await axios.delete(`${apiUrl}/loves/${peaceId}`, { data: {user_id: userId}})).data;
+
+export const flagPeace = async(peaceId, userId) =>
+    (await axios.post(`${apiUrl}/flags/${peaceId}`, {user_id: userId})).data;
     

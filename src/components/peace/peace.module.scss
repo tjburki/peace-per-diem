@@ -25,15 +25,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     font-size: 1rem;
     border-left: 1px solid #BABC94;
 
-    i {
+    div {
         color: lighten(black, 50%);
         cursor: pointer;
 
         &:hover {
             color: black;
+        }
+    }
+
+    div.loved {
+        color: red;
+        cursor:pointer;
+        
+        &:hover {
+            color: lighten(red, 25%);
+        }
+    }
+
+    div.userloves {
+        color: red;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: default;
+
+        &:hover {
+            color: red;
         }
     }
 }
