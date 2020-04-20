@@ -37,7 +37,7 @@ const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1}) =
     if (!visible) return null;
 
     return (
-        <div className={styles.peace}>
+        <div className={`${styles.peace} ${(authorIsUser ? styles.myPeace : '')}`}>
             <div className={styles.content}>
                 <div className={styles.text}>
                     {text}
@@ -57,7 +57,7 @@ const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1}) =
                     {
                         authorIsUser
                             ?   <div className={styles.userloves} title='loves'>
-                                    {loves} <Icon type='heart' />
+                                    <Icon type='heart' /> {loves}
                                 </div>
                             :   !loved
                                 ?   <div title='love' onClick={loveThisPeace}>

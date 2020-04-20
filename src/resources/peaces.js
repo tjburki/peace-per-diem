@@ -1,8 +1,8 @@
 import { apiUrl } from '../constants';
 import axios from 'axios';
 
-export const getPeaces = async() =>
-    (await axios.get(`${apiUrl}/peaces`)).data;
+export const getPeaces = async(userId) =>
+    (await axios.get(`${apiUrl}/peaces${userId ? `?user_id=${userId}` : ''}`)).data;
 
 export const getPeacesForUser = async(userId) =>
     (await axios.get(`${apiUrl}/user/${userId}/peaces`)).data;

@@ -1,7 +1,8 @@
 .peace {
     padding: 15px;
-    background-color: #E5DFCF;
+    background-color: lighten(#E5DFCF, 2%);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
     &~.peace {
@@ -9,8 +10,11 @@
     }
 }
 
+.myPeace {
+    background-color: darken(#E5DFCF, 2%);
+}
+
 .content {
-    padding-right: 10px;
     flex: 1;
 
     .author {
@@ -21,16 +25,16 @@
 }
 
 .actions {
-    padding-left: 15px;
+    padding-top: 15px;
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-size: 1rem;
-    border-left: 1px solid #BABC94;
+    font-size: 1.5rem;
+    border-top: 1px solid #BABC94;
 
     div {
-        color: lighten(black, 50%);
+        color: lighten(black, 75%);
         cursor: pointer;
 
         &:hover {
@@ -50,7 +54,7 @@
     div.userloves {
         color: red;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.5rem;
         cursor: default;
 
         &:hover {
