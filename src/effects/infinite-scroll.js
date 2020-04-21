@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const SCROLL_DIST_FROM_BOT = 200;
+
 const useInfiniteScroll = (callback) => {
   const [isFetching, setIsFetching] = useState(false);
 
@@ -14,7 +16,7 @@ const useInfiniteScroll = (callback) => {
   }, [isFetching]);
 
   function handleScroll() {
-    if ((window.innerHeight + window.scrollY) < document.body.scrollHeight - 150 || isFetching) return;
+    if ((window.innerHeight + window.scrollY) < document.body.scrollHeight - SCROLL_DIST_FROM_BOT || isFetching) return;
     setIsFetching(true);
   }
 

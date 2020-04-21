@@ -46,23 +46,24 @@ const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1, on
                 </div>
                 {
                     (author || date) &&
-                    <div className={styles.author}>
+                    <div className={styles.info}>
                         {
-                            `${(author ? `${author} ` : '')}${new Date(date).toLocaleDateString()}`
+                            author ? <span className={styles.author}>{(authorIsUser ? <b>You</b> : author)}</span> : null
                         }
+                        <span>{new Date(date).toLocaleDateString()}</span>
                     </div>
                 }
             </div>
             {
                 user && userId &&
-                <div className={styles.actions}>
+                <div className={(!authorIsUser ? styles.actions : styles.myActions)}>
                     {
                         authorIsUser
                             ?   <div className={styles.userloves} title='loves'>
                                     <Icon type='heart' /> {loves}
                                 </div>
                             :   !loved
-                                ?   <div title='love' onClick={loveThisPeace}>
+                                ?   <div title='love' className={styles.toLove} onClick={loveThisPeace}>
                                         <Icon type='heart' />
                                     </div>
                                 :   <div title='stop loving' className={styles.loved} onClick={unloveThisPeace}>
@@ -71,10 +72,10 @@ const Peace = ({id, text, author, date, userId, userLoves = false, loves = 1, on
                     }
                     {
                         !authorIsUser //todo: false below
-                            ?   <div title='report' onClick={flagThisPeace}>
+                            ?   <div className={styles.report} title='report' onClick={flagThisPeace}>
                                     <Icon type='flag' />
                                 </div>
-                            :   <div title='delete' onClick={deleteThisPeace}>
+                            :   <div className={styles.delete} title='delete' onClick={deleteThisPeace}>
                                     <Icon type='trash' />
                                 </div>
                     }

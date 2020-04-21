@@ -2,7 +2,6 @@ import React from 'react';
 import Peace from '../peace/peace';
 
 const PeaceList = ({peaces, hideAuthor}) => {
-    console.log(peaces);
     return (
         <React.Fragment>
             {

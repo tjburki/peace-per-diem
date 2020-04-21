@@ -1,6 +1,6 @@
 .peace {
     padding: 15px;
-    background-color: lighten(#E5DFCF, 3%);
+    background-color: #E5DFCF;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,16 +11,21 @@
 }
 
 .myPeace {
-    background-color: darken(#E5DFCF, 3%);
+    background-color: #BABC94;
+    color: white;
 }
 
 .content {
     flex: 1;
 
-    .author {
+    .info {
         padding-top: 15px;
-        font-size: .7rem;
+        font-size: .8rem;
         font-style: italic;
+
+        .author {
+            padding-right: 10px;
+        }
     }
 }
 
@@ -33,7 +38,7 @@
     font-size: 1.5rem;
     border-top: 1px solid #BABC94;
 
-    div {
+    div.toLove, div.report {
         color: lighten(black, 75%);
         cursor: pointer;
 
@@ -47,10 +52,25 @@
     div.loved {
         color: red;
         cursor:pointer;
-        
-        @media(hover: hover) {
+    }
+}
+
+.myActions {
+    padding-top: 15px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    border-top: 1px solid white;
+
+    div.delete {
+        color: darken(white, 10%);
+        cursor: pointer;
+
+        @media (hover: hover) {
             &:hover {
-                color: lighten(red, 25%);
+                color: darken(white, 5%);
             }
         }
     }
