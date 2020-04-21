@@ -8,7 +8,7 @@ const Nav = () => {
     const { isAuthenticated, user, loading } = useAuth0();
 
     return (
-        <div>
+        <div className={styles.nav}>
             {
                 loading 
                     ?   <Loading />

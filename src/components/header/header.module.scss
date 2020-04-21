@@ -11,4 +11,9 @@
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
+    flex-wrap: wrap;
+
+    @media(max-width: 600px) {
+        flex-direction: column;
+    }
 }

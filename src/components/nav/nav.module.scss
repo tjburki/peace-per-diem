@@ -1,8 +1,16 @@
+.nav {
+    display: flex;
+    @media(max-width: 600px) {
+        padding-top: 15px;
+    }
+}
+
 .profilelink {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: inherit;
+    white-space: nowrap;
 
     img {
         margin-right: 5px;
