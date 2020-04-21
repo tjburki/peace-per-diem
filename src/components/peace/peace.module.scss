@@ -76,14 +76,14 @@
     }
 
     div.userloves {
-        color: red;
+        color: white;
         font-weight: bold;
         font-size: 1.5rem;
         cursor: default;
 
         @media(hover: hover) {
             &:hover {
-                color: red;
+                color: white;
             }
         }
     }
