@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './user-peace-list.module.scss';
 import Peace from '../peace/peace';
-import { useAuth0 } from '../../react-auth0-spa';
+import { useAuth0 } from '../../auth/auth0';
 import { getPeacesForUser, createUpdatePeace } from '../../resources/peaces';
 import { isToday } from '../../helpers';
 import Loading from '../loading/loading';

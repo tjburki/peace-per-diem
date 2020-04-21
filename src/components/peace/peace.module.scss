@@ -11,8 +11,8 @@
 }
 
 .myPeace {
-    background-color: #BABC94;
-    color: white;
+    background-color: lighten(#BABC94, 20%);
+    border: 3px solid #BABC94;
 }
 
 .content {
@@ -62,29 +62,22 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
-    border-top: 1px solid white;
+    border-top: 1px solid #BABC94;
 
     div.delete {
-        color: darken(white, 10%);
+        color: lighten(black, 75%);
         cursor: pointer;
 
         @media (hover: hover) {
             &:hover {
-                color: darken(white, 5%);
+                color: black;
             }
         }
     }
 
     div.userloves {
-        color: white;
         font-weight: bold;
         font-size: 1.5rem;
         cursor: default;
-
-        @media(hover: hover) {
-            &:hover {
-                color: white;
-            }
-        }
     }
 }

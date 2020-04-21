@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './peace.module.scss';
-import { useAuth0 } from '../../react-auth0-spa';
+import { useAuth0 } from '../../auth/auth0';
 import { deletePeace, lovePeace, unlovePeace, flagPeace } from '../../resources/peaces';
 import Icon from '../icon/icon';
 

@@ -5,8 +5,8 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './font-awesome/css/all.min.css';
-import { Auth0Provider } from './react-auth0-spa';
-import config from './auth_config.json';
+import { Auth0Provider } from './auth/auth0';
+import { config, loginRedirect } from './auth/auth-config';
 import history from './utils/history';
 
 // A function that routes the user to the right place
@@ -15,7 +15,7 @@ const onRedirectCallback = appState => {
   history.push(
     appState && appState.targetUrl
       ? appState.targetUrl
-      : window.location.pathname
+      : loginRedirect
   );
 };
 

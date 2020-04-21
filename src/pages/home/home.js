@@ -1,10 +1,17 @@
+//Packages
 import React, { useEffect, useState } from 'react';
+
+//Helpers
+import { useAuth0 } from '../../auth/auth0';
+import useInfiniteScroll from '../../effects/infinite-scroll';
+
+//Components
 import PeaceList from '../../components/peace-list/peace-list';
-import { getPeaces } from '../../resources/peaces';
 import Loading from '../../components/loading/loading';
 import { GiganticText } from '../../components/layout/text/text';
-import { useAuth0 } from '../../react-auth0-spa';
-import useInfiniteScroll from '../../effects/infinite-scroll';
+
+//Resources
+import { getPeaces } from '../../resources/peaces';
 
 const Home = () => {
     const [peaces, setPeaces] = useState([]);

@@ -3,13 +3,17 @@
     justify-content: space-between;
     align-items: center;
 
-    a {
+    .logout {
         cursor: pointer;
         text-decoration: underline;
-    }
-}
 
-.totalLoves {
-    color: red;
-    font-weight: bold;
+        &:hover {
+            color: lighten(black, 50%);
+        }
+    }
+
+    .totalLoves {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 }
