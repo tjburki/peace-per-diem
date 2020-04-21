@@ -1,13 +1,17 @@
 import React from 'react';
 import Peace from '../peace/peace';
 
-const PeaceList = ({peaces}) =>
-    <React.Fragment>
-        {
-            peaces && peaces.length
-                ?   peaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} author={peace.username} date={peace.created} loves={peace.loves} userLoves={peace.userloves} />)
-                :   <i>No peaces have been made yet</i>
-        }
-    </React.Fragment>;
+const PeaceList = ({peaces, hideAuthor}) => {
+    console.log(peaces);
+    return (
+        <React.Fragment>
+            {
+                peaces && peaces.length
+                    ?   peaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} author={!hideAuthor ? peace.username : null} date={peace.created} loves={peace.loves} userLoves={peace.userloves} />)
+                    :   <i>No peaces have been made yet</i>
+            }
+        </React.Fragment>
+    );
+};
 
 export default PeaceList;

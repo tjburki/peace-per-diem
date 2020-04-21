@@ -6,6 +6,7 @@ import { getPeacesForUser, createUpdatePeace } from '../../resources/peaces';
 import { isToday } from '../../helpers';
 import Loading from '../loading/loading';
 import { GiganticText } from '../layout/text/text';
+import useInfiniteScroll from '../../effects/infinite-scroll';
 
 const UserPeaceList = ({onRefresh}) => {
     const { user } = useAuth0();
@@ -14,28 +15,42 @@ const UserPeaceList = ({onRefresh}) => {
     const [todaysPeaceDraft, setTodaysPeaceDraft] = useState('');
     const [todaysPeace, setTodaysPeace] = useState(defaultTodaysPeace);
     const [oldPeaces, setOldPeaces] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(0);
+    const [isFetching, setIsFetching] = useInfiniteScroll(callGetPeacesForUser);
+    const [noMoreData, setNoMoreData] = useState(false);
+    const [initialized, setInitialized] = useState(false);
 
-    async function callGetPeacesForUser() {
-        if (onRefresh) onRefresh();
-        setLoading(true);
-        const userPeaces = await getPeacesForUser(user.user_id);
-        const todaysPeaceToSet = userPeaces && userPeaces.length && isToday(new Date(userPeaces[0].created)) 
-            ?   userPeaces.shift() 
-            :   defaultTodaysPeace
-        setTodaysPeace(todaysPeaceToSet);
-        setOldPeaces(userPeaces);
-        setLoading(false);
+    async function callGetPeacesForUser(resetPage) {
+        if (noMoreData && !resetPage) return;
+
+        const nextPage = (resetPage ? 0 : page) + 1;
+        const firstPage = nextPage === 1;
+
+        if (firstPage && onRefresh) onRefresh();
+        const userPeaces = await getPeacesForUser(user.user_id, nextPage);
+
+        if (firstPage) {
+            const todaysPeaceToSet = userPeaces && userPeaces.length && isToday(new Date(userPeaces[0].created)) 
+                ?   userPeaces.shift() 
+                :   defaultTodaysPeace
+            setTodaysPeace(todaysPeaceToSet);
+        }
+        
+        setPage(nextPage);
+        setOldPeaces(firstPage ? userPeaces : [...oldPeaces, ...userPeaces]);
+        setNoMoreData(!userPeaces);
+        setIsFetching(false);
+        setInitialized(true);
     }
 
     useEffect(() => {
-        callGetPeacesForUser();
+        callGetPeacesForUser(true);
     }, []);
 
     async function callCreateUpdatePeace() {
         await createUpdatePeace({ ...todaysPeace, text: todaysPeaceDraft });
         setTodaysPeaceDraft('');
-        callGetPeacesForUser();
+        callGetPeacesForUser(true);
     }
 
     function peaceChange(e) {
@@ -48,7 +63,12 @@ const UserPeaceList = ({onRefresh}) => {
         callCreateUpdatePeace();
     }
 
-    if (loading) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
+    function removeOldPeace(peaceId) {
+        setOldPeaces(oldPeaces.filter(peace => peace.peace_id !== peaceId));
+        if (onRefresh) onRefresh();
+    }
+
+    if ((isFetching && !(oldPeaces.length || todaysPeace.text)) || !initialized) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
 
     return (
         <div>
@@ -74,7 +94,7 @@ const UserPeaceList = ({onRefresh}) => {
                                 </button>
                             </form>
                         :   <div className={styles.todayspeacedisplay}>
-                                <Peace id={todaysPeace.peace_id} userId={todaysPeace.user_id} text={todaysPeace.text} loves={todaysPeace.loves} userLoves={todaysPeace.userloves} onDelete={callGetPeacesForUser} />
+                                <Peace id={todaysPeace.peace_id} userId={todaysPeace.user_id} text={todaysPeace.text} loves={todaysPeace.loves} userLoves={todaysPeace.userloves} onDelete={() => { setTodaysPeace(defaultTodaysPeace); if (onRefresh) onRefresh(); }} />
                             </div>
                 }
             </div>
@@ -82,7 +102,7 @@ const UserPeaceList = ({onRefresh}) => {
                 oldPeaces.length
                     ?   <div className={styles.oldpeaces}>
                             {
-                                oldPeaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} date={peace.created} loves={peace.loves} userLoves={peace.userloves} onDelete={callGetPeacesForUser} />)
+                                oldPeaces.map(peace => <Peace key={peace.peace_id} id={peace.peace_id} userId={peace.user_id} text={peace.text} date={peace.created} loves={peace.loves} userLoves={peace.userloves} onDelete={() => removeOldPeace(peace.peace_id)} />)
                             }
                         </div>
                     :   null

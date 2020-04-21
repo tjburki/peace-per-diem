@@ -24,7 +24,10 @@ code {
 a {
   text-decoration: none !important;
   color: inherit;
-  &:hover {
-    color: darken(white, 5%);
+
+  @media(hover: hover) {
+    &:hover {
+      color: darken(white, 5%);
+    }
   }
 }
