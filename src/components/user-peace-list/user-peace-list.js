@@ -68,7 +68,7 @@ const UserPeaceList = ({onRefresh}) => {
         if (onRefresh) onRefresh();
     }
 
-    if ((!(oldPeaces.length || todaysPeace.text)) || !initialized) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
+    if (!initialized) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
 
     return (
         <div>
