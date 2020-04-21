@@ -16,7 +16,7 @@ const UserPeaceList = ({onRefresh}) => {
     const [todaysPeace, setTodaysPeace] = useState(defaultTodaysPeace);
     const [oldPeaces, setOldPeaces] = useState([]);
     const [page, setPage] = useState(0);
-    const [isFetching, setIsFetching] = useInfiniteScroll(callGetPeacesForUser);
+    //const [isFetching, setIsFetching] = useInfiniteScroll(callGetPeacesForUser);
     const [noMoreData, setNoMoreData] = useState(false);
     const [initialized, setInitialized] = useState(false);
 
@@ -39,7 +39,7 @@ const UserPeaceList = ({onRefresh}) => {
         setPage(nextPage);
         setOldPeaces(firstPage ? userPeaces : [...oldPeaces, ...userPeaces]);
         setNoMoreData(!userPeaces);
-        setIsFetching(false);
+        //setIsFetching(false);
         setInitialized(true);
     }
 
@@ -68,7 +68,7 @@ const UserPeaceList = ({onRefresh}) => {
         if (onRefresh) onRefresh();
     }
 
-    if ((isFetching && !(oldPeaces.length || todaysPeace.text)) || !initialized) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
+    if ((!(oldPeaces.length || todaysPeace.text)) || !initialized) return <div className={styles.loader}><GiganticText><Loading /></GiganticText></div>;
 
     return (
         <div>
