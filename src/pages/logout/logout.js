@@ -14,7 +14,7 @@ const Logout = () => {
     return (
         <LargeText>
             <div>
-                <Loading /> Logging out...
+                <Loading text='Logging out...' />
             </div>
         </LargeText>
     );

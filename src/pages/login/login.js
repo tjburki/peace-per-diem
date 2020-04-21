@@ -16,7 +16,7 @@ const Login = () => {
     return (
         <LargeText>
             <div>
-                <Loading /> Logging in...
+                <Loading text='Logging in...' />
             </div>
         </LargeText>
     );
